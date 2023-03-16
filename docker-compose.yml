@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  nginx:
+    image: assignment.nginx:latest
+    build:
+      context: .
+      dockerfile: .docker/nginx/Dockerfile
+    container_name: assignment.nginx
+    ports:
+      - "8123:80"
+  app:
+    image: assignment.app:latest
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    volumes:
+      - ${PWD}/app:/app:delegated
+
+  db:
+    image: assignment.database:latest
+    build:
+      context: .
+      dockerfile: .docker/database/Dockerfile
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
