@@ -1,0 +1,11 @@
+# FOLDERS
+/.idea/
+
+# FILES
+docker-compose.override.yml
+.DS_Store
+.env
+
+# match
+*.sql
+*.tar.gz
